@@ -5,17 +5,12 @@ import unittest
 
 
 # Предварительная обработка данных для получения всех синонимов слов
-def preprocess_with_synonyms(data):
-    ps = SynonymPS(n_synonyms=5)
-    synonyms = set()
-    for word in data.split():
-        synonyms |= ps.get_synonyms(word)
-    return synonyms
-
-class TestYourFunction(unittest.TestCase):
-    def setUp(self):
-        # Установка начальных условий перед каждым тестом
-        pass
+    def preprocess_with_synonyms(data):
+        ps = SynonymPS(n_synonyms=5)
+        synonyms = set()
+        for word in data.split():
+            synonyms |= ps.get_synonyms(word)
+        return synonyms
 
     @given(u'два описания {d1} и {d2} с синонимами слов')
     def step_impl(context, d1, d2):
@@ -74,6 +69,3 @@ class TestYourFunction(unittest.TestCase):
         assert context.actual_bin_attrs == expected_bin_attrs, \
             f"Количество бинарных атрибутов {context.actual_bin_attrs}, " \
             f"ожидалось {expected_bin_attrs}."
-
-if __name__ == '__main__':
-    unittest.main()
